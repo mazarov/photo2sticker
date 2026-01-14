@@ -1,0 +1,230 @@
+# Design Brief (Technical Specification)  
+## Landing Page for **Lovable** (Telegram-first AI Service)
+
+**Role context:**  
+Senior Product Designer · UX/UI Lead · Conversion Optimizer
+
+---
+
+## 1. Project Context
+
+**Product:** Lovable  
+**Type:** AI-powered AI-to-sticker service via Telegram bot  
+**Platform:** Web landing page (mobile-first, desktop secondary)
+
+**Key constraints:**
+- No input fields or forms
+- No text typing on the landing page
+- Single primary user action
+- Primary goal: **open Lovable in Telegram**
+
+---
+
+## 2. Landing Page Goal
+
+Convert visitors into Telegram users by guiding them to click  
+**“Open in Telegram”** with minimal friction and maximum emotional clarity.
+
+The landing page must:
+- Explain the value in seconds
+- Visually show the transformation
+- Feel fun, simple, and effortless
+- Eliminate any perceived complexity
+
+---
+
+## 3. Visual Style
+
+### 3.1 Emotional Tone
+- Friendly
+- Playful
+- Creative
+- Lighthearted
+- “Instant magic” feeling
+
+### 3.2 Design Direction
+- Consumer entertainment product
+- Sticker-first, result-first visuals
+- Dark UI + bright expressive characters
+- Telegram-native aesthetics
+
+### 3.3 What to Avoid
+- Corporate AI visuals
+- Technical UI metaphors
+- Complex layouts or explanations
+- Any element that looks like setup or configuration
+
+---
+
+## 4. Color Palette
+
+### Background
+- Dark navy / deep blue / near-black
+- Optional subtle pattern (icons, doodles, outlines)
+
+### Primary Accent
+- Purple → pink gradient
+- Used for:
+  - CTA buttons
+  - Key words in headlines
+  - Directional arrows and highlights
+
+### Secondary Colors
+- Cyan / light blue for steps and secondary accents
+- White for text
+- Soft glow or shadow effects allowed (subtle)
+
+---
+
+## 5. Typography
+
+### Font Style
+- Modern rounded sans-serif
+- Friendly, non-corporate
+- High readability on mobile
+
+### Text Hierarchy
+- Hero headline: large, bold, emotional
+- Section headlines: clear and short
+- Supporting text: minimal
+
+### Copy Rules
+- Short sentences
+- One idea per line
+- Easy to scan
+- No jargon
+
+---
+
+## 6. Graphics & Visual Elements
+
+### Visual Style
+- Sticker-like illustrations
+- Expressive characters
+- Thick outlines
+- Bright emotions
+
+### Key Visual Pattern
+- **Before / After (Was → Became)**
+- Real photo → stylized sticker
+- Transformation must be visually obvious
+
+---
+
+## 7. Page Structure & UX
+
+## 7.1 Hero Section (Above the Fold)
+
+### Hero Headline (examples)
+- **“Turn Any Photo into a Sticker”**
+- **“Your Photos. Instantly Stickers.”**
+- **“Create Stickers from Your Photos in Seconds”**
+
+### Hero Subheadline (examples)
+- “Upload a photo — get a ready-to-use Telegram sticker”
+- “No editing. No skills. Just one click.”
+
+### Hero Visual
+- Sticker character with strong emotion
+- Style representative of Lovable output
+
+### Primary CTA Button
+- **Text:**  
+  - “Open in Telegram”  
+  - “Create Stickers in Telegram”
+- Telegram icon required
+- Large, high-contrast
+- Dominant visual element
+
+---
+
+## 7.2 Transformation Block (Key Focus Area)
+
+This block is **mandatory** and visually dominant after the hero.
+
+### Section Headline (examples)
+- **“From Photo to Sticker”**
+- **“Turn Your Photo into a Sticker”**
+- **“Choose a Photo. Get a Sticker.”**
+
+### Visual Structure
+- Side-by-side or step-based layout:
+  - **Left:** “Before” (original photo)
+  - **Right:** “After” (Lovable sticker)
+- Clear labels:
+  - “Before”
+  - “After”
+- Directional arrow or transition effect
+
+### Supporting Copy (optional)
+- “Lovable keeps facial features and emotions”
+- “Perfect for chats, reactions, and gifts”
+
+---
+
+## 7.3 Simple 2-Step Flow (Optional but Recommended)
+
+### Step 1
+**Title:** “Choose a Photo”  
+**Description:** “Upload any portrait or photo”
+
+### Step 2
+**Title:** “Turn It into a Sticker”  
+**Description:** “Lovable creates a ready-to-use sticker automatically”
+
+Visual arrows or connectors are recommended.
+
+---
+
+## 8. Call-to-Action (CTA)
+
+### Primary CTA Text (approved options)
+- “Open in Telegram”
+- “Create Stickers in Telegram”
+- “Start in Telegram”
+
+### CTA Rules
+- Only one primary CTA
+- No secondary buttons
+- CTA repeated after transformation block
+- Sticky CTA on mobile allowed
+
+---
+
+## 9. Mobile-First UX Principles
+
+- CTA visible without scrolling
+- Button height ≥ 48px
+- Large tap zones
+- Minimal scrolling
+- Fast perceived load
+- Thumb-friendly spacing
+
+---
+
+## 10. Conversion Optimization Principles
+
+- Show the result before explaining anything
+- Use emotion-driven visuals
+- Reduce thinking to zero
+- Make Telegram transition obvious and safe
+- Avoid anything that looks like registration or setup
+
+---
+
+## 11. Summary
+
+This landing page style works for Lovable because:
+- It visually explains the product without text
+- It matches Telegram’s expressive, casual culture
+- It encourages impulsive, curiosity-driven clicks
+- It removes fear around AI complexity
+
+### Critical Elements (Must Not Be Removed)
+- Before / After transformation block
+- Single Telegram CTA
+- Sticker-like emotional visuals
+- Result-first communication
+- Mobile-first layout
+
+---
