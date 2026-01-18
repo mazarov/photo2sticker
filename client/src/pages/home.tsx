@@ -1,7 +1,7 @@
 import { Transformation } from "@/components/landing/Transformation";
 import { Steps } from "@/components/landing/Steps";
 import { TelegramButton } from "@/components/landing/TelegramButton";
-import heroBg from "@assets/generated_images/dark_navy_seamless_pattern_with_doodle_icons.png";
+import heroBg from "@assets/generated_images/dark_navy_seamless_pattern_with_doodle_icons.webp";
 
 export default function Home() {
   return (

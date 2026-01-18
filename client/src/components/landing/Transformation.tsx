@@ -1,8 +1,8 @@
 import { ArrowRight, Sparkles } from "lucide-react";
-import catBefore from "@assets/generated_images/cat_photo.jpg";
+import catBefore from "@assets/generated_images/cat_photo.webp";
 import catAfter from "@assets/generated_images/cat_sticker.webp";
-import womanBefore from "@assets/generated_images/portrait_of_a_smiling_woman_with_pink_hair.png";
-import womanAfter from "@assets/generated_images/telegram_sticker_style_illustration_of_the_same_woman.png";
+import womanBefore from "@assets/generated_images/portrait_of_a_smiling_woman_with_pink_hair.webp";
+import womanAfter from "@assets/generated_images/telegram_sticker_style_illustration_of_the_same_woman.webp";
 import {
   Carousel,
   CarouselContent,
@@ -42,6 +42,8 @@ export function Transformation() {
                         <img
                           src={example.before}
                           alt="Обычное фото"
+                          loading="lazy"
+                          decoding="async"
                           className="w-full h-full object-cover"
                         />
                       </div>
@@ -59,6 +61,8 @@ export function Transformation() {
                         <img
                           src={example.after}
                           alt="Стикер"
+                          loading="lazy"
+                          decoding="async"
                           className="w-[90%] h-[90%] object-contain drop-shadow-[0_0_12px_rgba(0,0,0,0.25)]"
                         />
                       </div>
