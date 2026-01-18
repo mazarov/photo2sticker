@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { Upload, Wand2, Sticker } from "lucide-react";
 
 export function Steps() {
@@ -34,15 +33,12 @@ export function Steps() {
           <div className="absolute top-6 sm:top-8 md:top-12 left-[16%] right-[16%] h-0.5 md:h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 opacity-30 rounded-full" />
           
           {steps.map((step, index) => (
-            <motion.div
+            <div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.2 }}
-              className="relative flex flex-col items-center text-center z-10"
+              className="relative flex flex-col items-center text-center z-10 animate-fade-in-up"
+              style={{ animationDelay: `${index * 150}ms` }}
             >
-              <div className={`w-10 h-10 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-xl md:rounded-2xl ${step.bgClass} shadow-lg ${step.shadowClass} flex items-center justify-center mb-2 sm:mb-4 rotate-3 hover:rotate-0 transition-transform duration-300`}>
+              <div className={`w-10 h-10 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-xl md:rounded-2xl ${step.bgClass} shadow-lg ${step.shadowClass} flex items-center justify-center mb-2 sm:mb-4 rotate-3 hover:rotate-0 transition-transform duration-300 will-change-transform`}>
                 <div className="scale-50 sm:scale-75 md:scale-100">
                   {step.icon}
                 </div>
@@ -51,7 +47,7 @@ export function Steps() {
               <p className="text-[10px] sm:text-xs md:text-sm text-muted-foreground whitespace-pre-line leading-tight">
                 {step.description}
               </p>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
