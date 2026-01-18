@@ -33,43 +33,48 @@ export function Transformation() {
           <div className="flex items-center gap-2 md:gap-4">
             <CarouselPrevious className="!static !translate-x-0 !translate-y-0 shrink-0" />
             <CarouselContent className="flex-1">
-              {examples.map((example, index) => (
-                <CarouselItem key={index}>
-                  <div className="flex flex-row items-center justify-center gap-3 sm:gap-6 md:gap-12">
-                    {/* Before */}
-                    <div className="flex flex-col items-center">
-                      <div className="aspect-[3/4] w-28 sm:w-40 md:w-56 overflow-hidden rounded-xl md:rounded-2xl">
-                        <img
-                          src={example.before}
-                          alt="Обычное фото"
-                          loading="lazy"
-                          decoding="async"
-                          className="w-full h-full object-cover"
-                        />
+              {examples.map((example, index) => {
+                const isFirstSlide = index === 0;
+                return (
+                  <CarouselItem key={index}>
+                    <div className="flex flex-row items-center justify-center gap-3 sm:gap-6 md:gap-12">
+                      {/* Before */}
+                      <div className="flex flex-col items-center">
+                        <div className="aspect-[3/4] w-28 sm:w-40 md:w-56 overflow-hidden rounded-xl md:rounded-2xl">
+                          <img
+                            src={example.before}
+                            alt="Обычное фото"
+                            loading={isFirstSlide ? "eager" : "lazy"}
+                            decoding={isFirstSlide ? "sync" : "async"}
+                            fetchPriority={isFirstSlide ? "high" : "low"}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Arrow */}
+                      <div className="flex flex-col items-center justify-center text-primary">
+                        <Sparkles className="w-4 h-4 sm:w-6 sm:h-6 mb-1 animate-bounce" />
+                        <ArrowRight className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 stroke-[3px]" />
+                      </div>
+
+                      {/* After */}
+                      <div className="flex flex-col items-center">
+                        <div className="aspect-[3/4] w-28 sm:w-40 md:w-56 overflow-hidden rounded-xl md:rounded-2xl flex items-center justify-center">
+                          <img
+                            src={example.after}
+                            alt="Стикер"
+                            loading={isFirstSlide ? "eager" : "lazy"}
+                            decoding={isFirstSlide ? "sync" : "async"}
+                            fetchPriority={isFirstSlide ? "high" : "low"}
+                            className="w-[90%] h-[90%] object-contain drop-shadow-[0_0_12px_rgba(0,0,0,0.25)]"
+                          />
+                        </div>
                       </div>
                     </div>
-
-                    {/* Arrow */}
-                    <div className="flex flex-col items-center justify-center text-primary">
-                      <Sparkles className="w-4 h-4 sm:w-6 sm:h-6 mb-1 animate-bounce" />
-                      <ArrowRight className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 stroke-[3px]" />
-                    </div>
-
-                    {/* After */}
-                    <div className="flex flex-col items-center">
-                      <div className="aspect-[3/4] w-28 sm:w-40 md:w-56 overflow-hidden rounded-xl md:rounded-2xl flex items-center justify-center">
-                        <img
-                          src={example.after}
-                          alt="Стикер"
-                          loading="lazy"
-                          decoding="async"
-                          className="w-[90%] h-[90%] object-contain drop-shadow-[0_0_12px_rgba(0,0,0,0.25)]"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </CarouselItem>
-              ))}
+                  </CarouselItem>
+                );
+              })}
             </CarouselContent>
             <CarouselNext className="!static !translate-x-0 !translate-y-0 shrink-0" />
           </div>
