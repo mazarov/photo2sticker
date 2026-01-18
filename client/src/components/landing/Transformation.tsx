@@ -20,11 +20,11 @@ export function Transformation() {
   return (
     <section className="px-4 md:px-8 pt-16 md:pt-20 pb-8">
       <div className="max-w-5xl mx-auto">
-        <div className="text-center mb-10 md:mb-12">
-          <h1 className="text-3xl md:text-5xl font-display font-bold text-white mb-4">
+        <div className="text-center mb-6 sm:mb-10 md:mb-12">
+          <h1 className="text-xl sm:text-3xl md:text-5xl font-display font-bold text-white mb-2 sm:mb-4">
             Создавай стикеры из фото для Telegram
           </h1>
-          <h2 className="text-base md:text-lg text-muted-foreground">
+          <h2 className="text-xs sm:text-base md:text-lg text-muted-foreground px-2">
             ИИ поможет превратить фото в стильный стикер для Telegram, сохраняя эмоции и черты лица
           </h2>
         </div>
@@ -35,10 +35,10 @@ export function Transformation() {
             <CarouselContent className="flex-1">
               {examples.map((example, index) => (
                 <CarouselItem key={index}>
-                  <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12">
+                  <div className="flex flex-row items-center justify-center gap-3 sm:gap-6 md:gap-12">
                     {/* Before */}
                     <div className="flex flex-col items-center">
-                      <div className="aspect-[3/4] w-44 md:w-56 overflow-hidden rounded-2xl">
+                      <div className="aspect-[3/4] w-28 sm:w-40 md:w-56 overflow-hidden rounded-xl md:rounded-2xl">
                         <img
                           src={example.before}
                           alt="Обычное фото"
@@ -49,13 +49,13 @@ export function Transformation() {
 
                     {/* Arrow */}
                     <div className="flex flex-col items-center justify-center text-primary">
-                      <Sparkles className="w-6 h-6 mb-1 animate-bounce" />
-                      <ArrowRight className="w-8 h-8 md:w-10 md:h-10 stroke-[3px]" />
+                      <Sparkles className="w-4 h-4 sm:w-6 sm:h-6 mb-1 animate-bounce" />
+                      <ArrowRight className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 stroke-[3px]" />
                     </div>
 
                     {/* After */}
                     <div className="flex flex-col items-center">
-                      <div className="aspect-[3/4] w-44 md:w-56 overflow-hidden rounded-2xl flex items-center justify-center">
+                      <div className="aspect-[3/4] w-28 sm:w-40 md:w-56 overflow-hidden rounded-xl md:rounded-2xl flex items-center justify-center">
                         <img
                           src={example.after}
                           alt="Стикер"
