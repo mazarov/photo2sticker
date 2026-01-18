@@ -20,6 +20,10 @@
     <!-- Preload local fonts - eliminates Google Fonts request chain -->
     <link rel="preload" href="/fonts/nunito-latin-700.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/varela-round-latin.woff2" as="font" type="font/woff2" crossorigin />
+    
+    <!-- Preload LCP images - eliminates 300ms resource load delay -->
+    <link rel="preload" href="/images/cat_photo.webp" as="image" type="image/webp" />
+    <link rel="preload" href="/images/cat_sticker.webp" as="image" type="image/webp" />
   </head>
   <body>
     <div id="root"></div>

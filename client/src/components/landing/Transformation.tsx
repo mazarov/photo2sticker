@@ -1,6 +1,4 @@
 import { ArrowRight, Sparkles } from "lucide-react";
-import catBefore from "@assets/generated_images/cat_photo.webp";
-import catAfter from "@assets/generated_images/cat_sticker.webp";
 import womanBefore from "@assets/generated_images/portrait_of_a_smiling_woman_with_pink_hair.webp";
 import womanAfter from "@assets/generated_images/telegram_sticker_style_illustration_of_the_same_woman.webp";
 import {
@@ -11,8 +9,9 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
+// First slide uses public URLs for preload to work (eliminates 300ms resource load delay)
 const examples = [
-  { before: catBefore, after: catAfter },
+  { before: "/images/cat_photo.webp", after: "/images/cat_sticker.webp" },
   { before: womanBefore, after: womanAfter },
 ];
 
