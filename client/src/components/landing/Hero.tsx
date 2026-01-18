@@ -24,19 +24,6 @@ export function Hero() {
         transition={{ duration: 0.6 }}
         className="relative z-10 max-w-4xl mx-auto space-y-6"
       >
-        <motion.div 
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ delay: 0.1, duration: 0.5 }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-panel text-sm font-medium text-secondary mb-4"
-        >
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span>
-          </span>
-          AI-Powered Sticker Generator
-        </motion.div>
-
         <h1 className="text-5xl md:text-7xl font-display font-black tracking-tight leading-tight text-white drop-shadow-xl">
           Turn Your Photos <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-secondary animate-pulse-glow inline-block">
