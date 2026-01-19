@@ -18,11 +18,11 @@ RUN npx vite build
 # Stage 2: Production
 FROM nginx:alpine AS production
 
-# Remove default nginx configs to avoid conflicts
-RUN rm -rf /etc/nginx/conf.d/* /etc/nginx/sites-enabled/* 2>/dev/null || true
+# Replace entire nginx config (not just conf.d)
+COPY nginx.conf /etc/nginx/nginx.conf
 
-# Copy custom nginx config
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+# Remove default conf.d to avoid conflicts
+RUN rm -rf /etc/nginx/conf.d/*
 
 # Copy built assets from builder stage
 COPY --from=builder /app/dist/public /usr/share/nginx/html
