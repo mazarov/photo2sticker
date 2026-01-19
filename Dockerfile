@@ -18,13 +18,16 @@ RUN npx vite build
 # Stage 2: Production
 FROM nginx:alpine AS production
 
+# Remove default nginx configs to avoid conflicts
+RUN rm -rf /etc/nginx/conf.d/* /etc/nginx/sites-enabled/* 2>/dev/null || true
+
 # Copy custom nginx config
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Copy built assets from builder stage
 COPY --from=builder /app/dist/public /usr/share/nginx/html
 
-# Expose port 80
+# Expose port 80 only (HTTPS handled by reverse proxy)
 EXPOSE 80
 
 # Start nginx
