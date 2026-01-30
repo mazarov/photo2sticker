@@ -19,7 +19,7 @@ export function Transformation() {
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-6 sm:mb-10 md:mb-12">
           <h1 className="text-xl sm:text-3xl md:text-5xl font-display font-bold text-white mb-2 sm:mb-4">
-            Создавай стикеры из фото для Telegram
+            Сделать стикер в ТГ из фото онлайн
           </h1>
           <h2 className="text-xs sm:text-base md:text-lg text-muted-foreground px-2">
             ИИ поможет превратить фото в стильный стикер для Telegram, сохраняя эмоции и черты лица
