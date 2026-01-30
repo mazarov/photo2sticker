@@ -26,7 +26,10 @@ export function Steps() {
   ];
 
   return (
-    <section className="py-8 md:py-16 relative overflow-hidden px-4 md:px-8">
+    <section
+      className="py-6 md:py-12 relative overflow-hidden px-4 md:px-8"
+      style={{ marginTop: "-80px" }}
+    >
       <div className="max-w-3xl mx-auto">
         <div className="grid grid-cols-3 gap-3 sm:gap-6 md:gap-12 relative">
           {/* Connecting Line */}

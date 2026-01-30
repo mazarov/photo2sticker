@@ -1,6 +1,4 @@
-import { ArrowRight, Sparkles } from "lucide-react";
-import womanBefore from "@assets/generated_images/portrait_of_a_smiling_woman_with_pink_hair.webp";
-import womanAfter from "@assets/generated_images/telegram_sticker_style_illustration_of_the_same_woman.webp";
+import { Sparkles } from "lucide-react";
 import {
   Carousel,
   CarouselContent,
@@ -9,10 +7,10 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
-// First slide uses public URLs for preload to work (eliminates 300ms resource load delay)
+// First slide uses public URL for preload (LCP optimization).
 const examples = [
-  { before: "/images/cat_photo.webp", after: "/images/cat_sticker.webp" },
-  { before: womanBefore, after: womanAfter },
+  { src: "/images/test0.webp", alt: "Пример 1" },
+  { src: "/images/test1.webp", alt: "Пример 2" },
 ];
 
 export function Transformation() {
@@ -36,39 +34,16 @@ export function Transformation() {
                 const isFirstSlide = index === 0;
                 return (
                   <CarouselItem key={index}>
-                    <div className="flex flex-row items-center justify-center gap-3 sm:gap-6 md:gap-12">
-                      {/* Before */}
-                      <div className="flex flex-col items-center">
-                        <div className="aspect-[3/4] w-28 sm:w-40 md:w-56 overflow-hidden rounded-xl md:rounded-2xl">
-                          <img
-                            src={example.before}
-                            alt="Обычное фото"
-                            loading={isFirstSlide ? "eager" : "lazy"}
-                            decoding={isFirstSlide ? "sync" : "async"}
-                            fetchPriority={isFirstSlide ? "high" : "low"}
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-                      </div>
-
-                      {/* Arrow */}
-                      <div className="flex flex-col items-center justify-center text-primary">
-                        <Sparkles className="w-4 h-4 sm:w-6 sm:h-6 mb-1 animate-bounce" />
-                        <ArrowRight className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 stroke-[3px]" />
-                      </div>
-
-                      {/* After */}
-                      <div className="flex flex-col items-center">
-                        <div className="aspect-[3/4] w-28 sm:w-40 md:w-56 overflow-hidden rounded-xl md:rounded-2xl flex items-center justify-center">
-                          <img
-                            src={example.after}
-                            alt="Стикер"
-                            loading={isFirstSlide ? "eager" : "lazy"}
-                            decoding={isFirstSlide ? "sync" : "async"}
-                            fetchPriority={isFirstSlide ? "high" : "low"}
-                            className="w-[90%] h-[90%] object-contain drop-shadow-[0_0_12px_rgba(0,0,0,0.25)]"
-                          />
-                        </div>
+                    <div className="flex flex-col items-center justify-center">
+                      <div className="w-full max-w-3xl overflow-hidden rounded-xl md:rounded-2xl">
+                        <img
+                          src={example.src}
+                          alt={example.alt}
+                          loading={isFirstSlide ? "eager" : "lazy"}
+                          decoding={isFirstSlide ? "sync" : "async"}
+                          fetchPriority={isFirstSlide ? "high" : "low"}
+                          className="w-full h-auto object-contain"
+                        />
                       </div>
                     </div>
                   </CarouselItem>
