@@ -30,7 +30,7 @@ export default function Home() {
             text="Сделать стикер в Telegram"
           />
           <span className="text-[10px] sm:text-xs text-muted-foreground text-center">
-            Бесплатно · Без регистрации · Готово за 1 минуту
+            Без дизайнера · Без регистрации · Готово за 1 минуту
           </span>
         </div>
       </div>
