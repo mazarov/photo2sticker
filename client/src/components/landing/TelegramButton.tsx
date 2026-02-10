@@ -1,5 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Send } from "lucide-react";
+import { useMemo } from "react";
+import { buildTelegramStartLink } from "@/lib/utils";
 
 export function TelegramButton({ 
   className = "", 
@@ -10,7 +12,7 @@ export function TelegramButton({
   size?: "default" | "sm" | "lg" | "icon";
   text?: string;
 }) {
-  const telegramUrl = "https://t.me/Photo_2_StickerBot?start=from_web";
+  const telegramUrl = useMemo(() => buildTelegramStartLink(), []);
 
   return (
     <div className={className}>
