@@ -15,7 +15,7 @@ export function FinalCTA() {
             text="Открыть бота в Telegram"
           />
           <span className="text-[10px] sm:text-xs text-muted-foreground">
-            Первый стикер бесплатно · Готово за 30 секунд
+            От 45₽ за пак из 9 стикеров · Готово за 30 секунд
           </span>
         </div>
       </div>

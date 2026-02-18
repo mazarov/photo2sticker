@@ -21,7 +21,7 @@ export function StyleGallery() {
           ИИ сохраняет твои черты — цвет глаз, родинки, причёску — и добавляет стиль. Узнаваемо ты в любом стиле.
         </p>
         <p className="text-[10px] sm:text-xs text-muted-foreground/70 text-center mb-6 sm:mb-10">
-          Из одного фото — пак в любом стиле. Первый пак бесплатно · Дальше от 45₽ за пак из 9 стикеров
+          Из одного фото — пак в любом стиле. От 45₽ за пак из 9 стикеров
         </p>
 
         <div className="grid grid-cols-3 sm:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
