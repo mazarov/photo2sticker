@@ -1,8 +1,11 @@
 import { Hero } from "@/components/landing/Hero";
+import { PainBlock } from "@/components/landing/PainBlock";
+import { HopeBlock } from "@/components/landing/HopeBlock";
 import { SocialProof } from "@/components/landing/SocialProof";
 import { StyleGallery } from "@/components/landing/StyleGallery";
 import { HowItWorks } from "@/components/landing/HowItWorks";
 import { Features } from "@/components/landing/Features";
+import { PriceBlock } from "@/components/landing/PriceBlock";
 import { FAQ } from "@/components/landing/FAQ";
 import { Reviews } from "@/components/landing/Reviews";
 import { TelegramButton } from "@/components/landing/TelegramButton";
@@ -26,11 +29,14 @@ export default function Home() {
       {/* Content */}
       <main className="relative z-10 pb-28">
         <Hero />
+        <PainBlock />
+        <HopeBlock />
         <SocialProof />
         <Reviews />
-        <StyleGallery />
         <HowItWorks />
+        <StyleGallery />
         <Features />
+        <PriceBlock />
         <FAQ />
       </main>
 
@@ -40,10 +46,10 @@ export default function Home() {
           <TelegramButton
             size="lg"
             className="shadow-2xl w-full sm:w-auto"
-            text="Сделать стикер в Telegram"
+            text="Сделать пак стикеров в Telegram"
           />
           <span className="text-[10px] sm:text-xs text-muted-foreground text-center">
-            Без дизайнера · Без регистрации · Готово за 1 минуту
+            Без дизайнера · Без регистрации · Пак за 30 секунд
           </span>
           <span className="text-[9px] sm:text-[10px] text-muted-foreground/60 text-center">
             🔒 Не храним ваши фото

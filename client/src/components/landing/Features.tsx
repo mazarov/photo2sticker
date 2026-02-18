@@ -32,10 +32,10 @@ export function Features() {
     <section className="py-8 md:py-14 px-4 md:px-8">
       <div className="max-w-4xl mx-auto">
         <h2 className="text-lg sm:text-2xl md:text-3xl font-display font-bold text-white text-center mb-2 sm:mb-3">
-          Настрой стикер под себя
+          Настрой пак под себя
         </h2>
         <p className="text-xs sm:text-sm text-muted-foreground text-center mb-6 sm:mb-10">
-          Текст и обводка — бесплатно
+          Текст и обводка в паке — бесплатно. Любой стикер в паке можно отредактировать и поменять эмоцию или движение — кнопка «Редактирование», 1 кредит.
         </p>
 
         <div className="grid grid-cols-2 gap-3 sm:gap-4 md:gap-6 max-w-2xl mx-auto">

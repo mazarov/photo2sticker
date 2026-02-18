@@ -4,38 +4,38 @@ const steps = [
   {
     num: "①",
     icon: <Upload className="w-6 h-6 sm:w-8 sm:h-8 text-white" />,
-    title: "Отправь фото",
-    description: "Любое фото с телефона или галереи",
+    title: "Пришли фото",
+    description: "С телефона или галереи",
     bgClass: "bg-blue-500",
     shadowClass: "shadow-blue-500/20",
-    screen: "/images/screens/step-1.webp",
+    screen: "/images/screens/step-1.png",
   },
   {
     num: "②",
     icon: <Palette className="w-6 h-6 sm:w-8 sm:h-8 text-white" />,
-    title: "Выбери стиль",
-    description: "Мультик, аниме, чиби — или опиши свой стиль текстом",
+    title: "Выбери стиль и эмоции",
+    description: "Аниме, фото-реалистичный, мультик и др. ИИ сохраняет твои черты.",
     bgClass: "bg-purple-500",
     shadowClass: "shadow-purple-500/20",
-    screen: "/images/screens/step-2.webp",
+    screen: "/images/screens/step-2.png",
   },
   {
     num: "③",
     icon: <Sparkles className="w-6 h-6 sm:w-8 sm:h-8 text-white" />,
     title: "Готово!",
-    description: "Меняй движения и эмоции, добавляй текст и обводку",
+    description: "Получаешь пак стикеров с разными эмоциями и подписями; можно добавить текст и обводку",
     bgClass: "bg-pink-500",
     shadowClass: "shadow-pink-500/20",
-    screen: "/images/screens/step-3.webp",
+    screen: "/images/screens/step-3.png",
   },
   {
     num: "④",
     icon: <PackagePlus className="w-6 h-6 sm:w-8 sm:h-8 text-white" />,
-    title: "Добавь в пак",
-    description: "Стикер сразу в твоём стикерпаке в Telegram",
+    title: "Пак в Telegram",
+    description: "Пак сразу в твоём стикерпаке в Telegram",
     bgClass: "bg-emerald-500",
     shadowClass: "shadow-emerald-500/20",
-    screen: "/images/screens/step-4.webp",
+    screen: "/images/screens/step-4.png",
   },
 ];
 
@@ -44,7 +44,7 @@ export function HowItWorks() {
     <section className="py-8 md:py-14 px-4 md:px-8">
       <div className="max-w-4xl mx-auto">
         <h2 className="text-lg sm:text-2xl md:text-3xl font-display font-bold text-white text-center mb-6 sm:mb-10">
-          4 шага — и стикер в паке
+          4 шага — и пак стикеров у тебя
         </h2>
 
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 relative">

@@ -1,20 +1,13 @@
+// Только стили из БД (style_presets_v2, is_active). Порядок по sort_order.
 const styles = [
-  { name: "Классический", emoji: "🎨", image: "/images/examples/sticker-klassicheskiy.webp" },
-  { name: "Тёмный", emoji: "🌑", image: "/images/examples/sticker-tyomnyy.webp" },
-  { name: "Романтик", emoji: "💕", image: "/images/examples/sticker-romantik.webp" },
-  { name: "Чиби", emoji: "🧸", image: "/images/examples/sticker-chibi.webp" },
+  { name: "Фото реализм", emoji: "📷", image: "/images/examples/sticker-klassicheskiy.webp" },
   { name: "Телеграм", emoji: "✈️", image: "/images/examples/sticker-telegram.webp" },
-  { name: "Каваий", emoji: "🌸", image: "/images/examples/sticker-kavaii.webp" },
+  { name: "Аниме", emoji: "🎌", image: "/images/examples/sticker-romantik.webp" },
+  { name: "Аниме-романс", emoji: "💗", image: "/images/examples/sticker-romantik2.webp" },
+  { name: "Чиби", emoji: "🍡", image: "/images/examples/sticker-chibi.webp" },
+  { name: "Каваий", emoji: "✨", image: "/images/examples/sticker-kavaii.webp" },
   { name: "Котик", emoji: "🐱", image: "/images/examples/sticker-kotik.webp" },
-  { name: "Нежный", emoji: "🌺", image: "/images/examples/sticker-nezhnyy.webp" },
-  { name: "Парочки", emoji: "👫", image: "/images/examples/sticker-parochki.webp" },
-  { name: "С сердечками", emoji: "💖", image: "/images/examples/sticker-s-serdechkami.webp" },
-  { name: "Американский", emoji: "🇺🇸", image: "/images/examples/sticker-amerikanskiy.webp" },
-  { name: "Современный", emoji: "💎", image: "/images/examples/sticker-sovremennyy.webp" },
-  { name: "Классика", emoji: "🏛", image: "/images/examples/sticker-klassika.webp" },
-  { name: "Романтик", emoji: "💕", image: "/images/examples/sticker-romantik2.webp" },
-  { name: "90-е", emoji: "📼", image: "/images/examples/sticker-90e.webp" },
-  { name: "Любовь это...", emoji: "👫", image: "/images/examples/sticker-lyubov-eto.webp" },
+  { name: "Манхва", emoji: "📖", image: "/images/examples/sticker-sovremennyy.webp" },
 ];
 
 export function StyleGallery() {
@@ -25,10 +18,10 @@ export function StyleGallery() {
           Выбери свой стиль
         </h2>
         <p className="text-xs sm:text-sm text-muted-foreground text-center mb-1 sm:mb-2">
-          ИИ сделает остальное — сохранит черты лица и добавит стиль
+          ИИ сохраняет твои черты — цвет глаз, родинки, причёску — и добавляет стиль. Узнаваемо ты в любом стиле.
         </p>
         <p className="text-[10px] sm:text-xs text-muted-foreground/70 text-center mb-6 sm:mb-10">
-          1 кредит = 1 стикер ≈ 15₽ · Первый бесплатно
+          Из одного фото — пак в любом стиле. Первый пак бесплатно · Дальше от 45₽ за пак из 9 стикеров
         </p>
 
         <div className="grid grid-cols-3 sm:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
@@ -56,7 +49,7 @@ export function StyleGallery() {
         </div>
 
         <p className="text-center text-[10px] sm:text-xs text-muted-foreground mt-4 sm:mt-6">
-          + свой стиль: просто опиши текстом
+          + свой стиль: просто опиши текстом в боте
         </p>
       </div>
     </section>
