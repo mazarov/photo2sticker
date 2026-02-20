@@ -26,6 +26,17 @@ export const metadata: Metadata = {
 
 const YANDEX_METRIKA_ID = 106534984;
 
+function StoragePreconnect() {
+  const url = process.env.SUPABASE_SUPABASE_PUBLIC_URL ?? process.env.SUPABASE_URL;
+  if (!url) return null;
+  try {
+    const origin = new URL(url).origin;
+    return <link rel="preconnect" href={origin} crossOrigin="" />;
+  } catch {
+    return null;
+  }
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -38,13 +49,14 @@ export default function RootLayout({
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="preload" href="/fonts/nunito-latin-700.woff2" as="font" type="font/woff2" crossOrigin="" />
         <link rel="preload" href="/fonts/varela-round-latin.woff2" as="font" type="font/woff2" crossOrigin="" />
+        <StoragePreconnect />
       </head>
       <body>
         {children}
         <Footer />
         <Script
           id="yandex-metrika"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
           dangerouslySetInnerHTML={{
             __html: `
               (function(m,e,t,r,i,k,a){

@@ -29,15 +29,19 @@ export function StickerFallbackPlaceholder({ className }: { className?: string }
 
 /**
  * Картинка стикера с заглушкой при ошибке загрузки (битая ссылка, 404, сеть).
+ * fetchPriority="high" + loading="eager" для LCP-элемента (первый стикер в Hero).
  */
 export function StickerImageWithFallback({
   src,
   alt,
   className = "",
+  fetchPriority,
 }: {
   src: string;
   alt: string;
   className?: string;
+  /** "high" для LCP-изображения (первый стикер в Hero) — не использовать lazy */
+  fetchPriority?: "high" | "low" | "auto";
 }) {
   const [error, setError] = useState(false);
 
@@ -45,11 +49,13 @@ export function StickerImageWithFallback({
     return <StickerFallbackPlaceholder className={className} />;
   }
 
+  const isLcp = fetchPriority === "high";
   return (
     <img
       src={src}
       alt={alt}
-      loading="lazy"
+      loading={isLcp ? "eager" : "lazy"}
+      fetchPriority={isLcp ? "high" : undefined}
       className={className}
       onError={() => setError(true)}
     />

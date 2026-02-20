@@ -155,17 +155,21 @@ export function EmotionPackCarousel() {
           >
             ‹
           </button>
-          <div className="flex gap-1.5">
+          <div className="flex items-center gap-1 sm:gap-2">
             {stickers.map((_, i) => (
               <button
                 key={i}
                 type="button"
                 onClick={() => goTo(i)}
-                className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
-                  i === current ? "bg-primary w-4" : "bg-white/20 hover:bg-white/40"
-                }`}
+                className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full transition-all duration-300"
                 aria-label={stickers[i].label}
-              />
+              >
+                <span
+                  className={`block rounded-full transition-all duration-300 ${
+                    i === current ? "bg-primary w-4 h-1.5" : "w-1.5 h-1.5 bg-white/20 hover:bg-white/40"
+                  }`}
+                />
+              </button>
             ))}
           </div>
           <button

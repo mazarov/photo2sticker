@@ -17,6 +17,8 @@ function HeroPhotoPlaceholder() {
     <img
       src={HERO_PHOTO_SRC}
       alt="Фото"
+      width={452}
+      height={450}
       className="w-full h-full object-cover"
       onError={() => setError(true)}
     />
@@ -63,6 +65,7 @@ export function FixedPackCarousel({ imageUrls }: { imageUrls: string[] }) {
               <StickerImageWithFallback
                 src={src}
                 alt="Стикер"
+                fetchPriority={current === 0 ? "high" : undefined}
                 className={`w-full h-full object-contain drop-shadow-[0_4px_20px_rgba(139,92,246,0.3)] transition-opacity duration-200 ${
                   fade ? "opacity-100" : "opacity-0"
                 }`}
@@ -83,17 +86,21 @@ export function FixedPackCarousel({ imageUrls }: { imageUrls: string[] }) {
           >
             ‹
           </button>
-          <div className="flex gap-1.5">
+          <div className="flex items-center gap-1 sm:gap-2">
             {imageUrls.map((_, i) => (
               <button
                 key={i}
                 type="button"
                 onClick={() => goTo(i)}
-                className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
-                  i === current ? "bg-primary w-4" : "bg-white/20 hover:bg-white/40"
-                }`}
+                className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full transition-all duration-300"
                 aria-label={`Стикер ${i + 1}`}
-              />
+              >
+                <span
+                  className={`block rounded-full transition-all duration-300 ${
+                    i === current ? "bg-primary w-4 h-1.5" : "w-1.5 h-1.5 bg-white/20 hover:bg-white/40"
+                  }`}
+                />
+              </button>
             ))}
           </div>
           <button

@@ -55,7 +55,7 @@ export function Footer() {
             );
           })}
         </nav>
-        <p className="text-[10px] sm:text-xs text-muted-foreground/70 mt-4">
+        <p className="text-[10px] sm:text-xs text-muted-foreground mt-4">
           © Photo2Sticker · Стикеры из фото для Telegram
         </p>
       </div>

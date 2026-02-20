@@ -54,6 +54,8 @@ export function HowItWorks({
                   <img
                     src={step.screen}
                     alt={`Скриншот: ${step.title}`}
+                    width={591}
+                    height={1280}
                     loading="lazy"
                     className="w-full h-auto"
                   />
