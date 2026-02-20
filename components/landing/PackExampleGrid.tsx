@@ -20,7 +20,7 @@ export function PackExampleGrid({
   const urls = imageUrls.slice(0, 9);
 
   return (
-    <section className="py-8 md:py-14 px-4 md:px-8">
+    <section className="py-6 md:py-10 px-4 md:px-8">
       <div className="max-w-4xl mx-auto">
         <h2 className="text-lg sm:text-2xl md:text-3xl font-display font-bold text-white text-center mb-2 sm:mb-3">
           {sectionTitle}
@@ -28,7 +28,7 @@ export function PackExampleGrid({
         <p className="text-xs sm:text-sm text-muted-foreground text-center mb-1 sm:mb-2">
           {sectionSubtitle}
         </p>
-        <p className="text-[10px] sm:text-xs text-muted-foreground/70 text-center mb-6 sm:mb-10">
+        <p className="text-[10px] sm:text-xs text-muted-foreground/70 text-center mb-4 sm:mb-6">
           Из одного фото — пак в любом стиле. От 45₽ за пак из 9 стикеров
         </p>
 
@@ -51,7 +51,7 @@ export function PackExampleGrid({
           ))}
         </div>
 
-        <p className="text-center text-[10px] sm:text-xs text-muted-foreground mt-4 sm:mt-6">
+        <p className="text-center text-[10px] sm:text-xs text-muted-foreground mt-3 sm:mt-4">
           {footerText}
         </p>
       </div>

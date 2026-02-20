@@ -14,9 +14,9 @@ export function SeoTextBlock({
 }) {
   const safeContent = contentWithBotLink(content.trim());
   return (
-    <section className="py-8 md:py-14 px-4 md:px-8">
+    <section className="py-6 md:py-10 px-4 md:px-8">
       <div className="max-w-3xl mx-auto">
-        <h2 className="text-lg sm:text-2xl md:text-3xl font-display font-bold text-white text-center mb-6">
+        <h2 className="text-lg sm:text-2xl md:text-3xl font-display font-bold text-white text-center mb-4 sm:mb-6">
           {title}
         </h2>
         <div

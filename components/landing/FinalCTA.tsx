@@ -2,7 +2,7 @@ import { TelegramButton } from "./TelegramButton";
 
 export function FinalCTA() {
   return (
-    <section className="py-10 md:py-16 px-4 md:px-8">
+    <section className="py-6 md:py-10 px-4 md:px-8">
       <div className="max-w-2xl mx-auto text-center">
         <h2 className="text-lg sm:text-2xl md:text-3xl font-display font-bold text-white mb-4 sm:mb-6">
           Готов сделать свой первый стикер?

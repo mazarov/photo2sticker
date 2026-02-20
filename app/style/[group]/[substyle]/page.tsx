@@ -20,7 +20,7 @@ import { TelegramButton } from "@/components/landing/TelegramButton";
 import { FaqSchema } from "@/components/landing/FaqSchema";
 import { BreadcrumbSchema } from "@/components/landing/BreadcrumbSchema";
 import { withSocialMeta } from "@/lib/seo/metadata";
-import { getHeroPresetForPath } from "@/lib/landing-hero-preset";
+import { getPackImageUrlsForPresetId } from "@/lib/landing-hero-preset";
 
 const BASE = "https://photo2sticker.ru";
 
@@ -50,12 +50,16 @@ function SubstylePageContent({
   groupSlug,
   substyleSlug,
   heroPackUrls,
+  examplePackUrls,
 }: {
   group: StyleGroup;
   substyle: SubstyleItem;
   groupSlug: string;
   substyleSlug: string;
+  /** Для Hero-карусели (может быть fallback из getHeroPresetForPath). */
   heroPackUrls?: string[];
+  /** Для блока «Примеры» — всегда 9 URL пака этого стиля (pack/style/{presetId}/1..9). 404 → заглушка в ячейке. */
+  examplePackUrls: string[];
 }) {
   const ctaSlug = substyle.presetId;
   const neighbourSubstyles = group.substyles.filter((s) => s.slug !== substyleSlug).slice(0, 3);
@@ -122,12 +126,12 @@ function SubstylePageContent({
           points={group.hopePoints}
         />
 
-        {heroPackUrls && heroPackUrls.length >= 9 ? (
+        {examplePackUrls.length >= 9 ? (
           <PackExampleGrid
             sectionTitle={`Пример: ${substyle.nameRu}`}
             sectionSubtitle="9 стикеров в этом стиле из примера пака. ИИ сохраняет черты лица."
             footerText="Первый пак бесплатно."
-            imageUrls={heroPackUrls}
+            imageUrls={examplePackUrls}
           />
         ) : (
           <StyleGallery
@@ -170,14 +174,16 @@ export default async function SubstylePage({ params }: Props) {
   const { group: groupSlug, substyle: substyleSlug } = await params;
   const data = getSubstyle(groupSlug, substyleSlug);
   if (!data) notFound();
-  const heroPreset = await getHeroPresetForPath(`/style/${groupSlug}/${substyleSlug}`);
+  const examplePackUrls = getPackImageUrlsForPresetId(data.substyle.presetId);
+  // Hero и блок «Примеры» — только пак этого стиля (pack/style/{presetId}/1..9). Нет в storage → заглушка.
   return (
     <SubstylePageContent
       group={data.group}
       substyle={data.substyle}
       groupSlug={groupSlug}
       substyleSlug={substyleSlug}
-      heroPackUrls={heroPreset?.image_urls}
+      heroPackUrls={examplePackUrls}
+      examplePackUrls={examplePackUrls}
     />
   );
 }

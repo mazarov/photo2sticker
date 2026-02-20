@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { getClusterBySlug, getAllClusterSlugs, MAIN_PAGE_CLUSTER_SLUG } from "@/lib/seo/cluster-pages";
 import { withSocialMeta } from "@/lib/seo/metadata";
 import { RelatedLinks } from "@/components/landing/RelatedLinks";
-import { getHeroPresetForPath } from "@/lib/landing-hero-preset";
 import { Hero } from "@/components/landing/Hero";
 import { PainBlock } from "@/components/landing/PainBlock";
 import { HopeBlock } from "@/components/landing/HopeBlock";
@@ -32,8 +31,7 @@ export const metadata: Metadata = withSocialMeta({
 });
 
 export default async function Home() {
-  const heroPreset = await getHeroPresetForPath("/");
-
+  // Главная всегда показывает контент-паки из pack/content/ (humor, everyday и др.) через EmotionPackCarousel, не пак из style_presets_v2.
   return (
     <div className="min-h-screen bg-background overflow-x-hidden relative">
       {/* Background: gradient (hero image not in public) */}
@@ -52,7 +50,6 @@ export default async function Home() {
         <Hero
           h1={mainCluster.h1}
           subtitle={mainCluster.heroSubtitle}
-          heroPackUrls={heroPreset?.image_urls}
         />
         <PainBlock title={mainCluster.painTitle} text={mainCluster.painText} />
         <HopeBlock

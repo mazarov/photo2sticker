@@ -15,9 +15,9 @@ const examples = [
 
 export function Transformation() {
   return (
-    <section className="px-4 md:px-8 pt-16 md:pt-20 pb-8">
+    <section className="px-4 md:px-8 pt-8 md:pt-10 pb-6 md:pb-10">
       <div className="max-w-5xl mx-auto">
-        <div className="text-center mb-6 sm:mb-10 md:mb-12">
+        <div className="text-center mb-4 sm:mb-6">
           <h1 className="text-xl sm:text-3xl md:text-5xl font-display font-bold text-white mb-2 sm:mb-4">
             Сделать стикер в ТГ из фото онлайн
           </h1>

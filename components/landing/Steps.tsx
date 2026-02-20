@@ -27,7 +27,7 @@ export function Steps() {
 
   return (
     <section
-      className="py-6 md:py-12 relative overflow-hidden px-4 md:px-8"
+      className="py-6 md:py-10 relative overflow-hidden px-4 md:px-8"
       style={{ marginTop: "-80px" }}
     >
       <div className="max-w-3xl mx-auto">

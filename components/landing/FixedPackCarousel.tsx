@@ -77,22 +77,22 @@ export function FixedPackCarousel({ imageUrls }: { imageUrls: string[] }) {
         </div>
       </div>
       {imageUrls.length > 1 && (
-        <div className="flex items-center justify-center gap-4 mt-4">
+        <div className="relative z-10 flex w-full max-w-full items-center gap-1 sm:gap-4 mt-4 py-2 px-1">
           <button
             type="button"
             onClick={prev}
-            className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:text-white hover:border-white/40 transition-colors"
+            className="shrink-0 min-w-[44px] min-h-[44px] w-10 h-10 sm:w-8 sm:h-8 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:text-white hover:border-white/40 transition-colors touch-manipulation"
             aria-label="Предыдущий"
           >
             ‹
           </button>
-          <div className="flex items-center gap-1 sm:gap-2">
+          <div className="flex-1 min-w-0 overflow-x-auto flex items-center justify-center gap-1 sm:gap-2 py-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {imageUrls.map((_, i) => (
               <button
                 key={i}
                 type="button"
                 onClick={() => goTo(i)}
-                className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full transition-all duration-300"
+                className="shrink-0 min-w-8 min-h-8 sm:min-w-[44px] sm:min-h-[44px] flex items-center justify-center rounded-full transition-all duration-300 touch-manipulation"
                 aria-label={`Стикер ${i + 1}`}
               >
                 <span
@@ -106,7 +106,7 @@ export function FixedPackCarousel({ imageUrls }: { imageUrls: string[] }) {
           <button
             type="button"
             onClick={next}
-            className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:text-white hover:border-white/40 transition-colors"
+            className="shrink-0 min-w-[44px] min-h-[44px] w-10 h-10 sm:w-8 sm:h-8 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:text-white hover:border-white/40 transition-colors touch-manipulation"
             aria-label="Следующий"
           >
             ›

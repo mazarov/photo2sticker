@@ -146,40 +146,40 @@ export function EmotionPackCarousel() {
         </div>
 
         {stickers.length > 1 && (
-          <div className="flex items-center justify-center gap-4 mt-4">
+          <div className="relative z-10 flex w-full max-w-full items-center gap-1 sm:gap-4 mt-4 py-2 px-1">
             <button
               type="button"
               onClick={prev}
-            className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:text-white hover:border-white/40 transition-colors"
-            aria-label="Предыдущий стиль"
-          >
-            ‹
-          </button>
-          <div className="flex items-center gap-1 sm:gap-2">
-            {stickers.map((_, i) => (
-              <button
-                key={i}
-                type="button"
-                onClick={() => goTo(i)}
-                className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full transition-all duration-300"
-                aria-label={stickers[i].label}
-              >
-                <span
-                  className={`block rounded-full transition-all duration-300 ${
-                    i === current ? "bg-primary w-4 h-1.5" : "w-1.5 h-1.5 bg-white/20 hover:bg-white/40"
-                  }`}
-                />
-              </button>
-            ))}
-          </div>
-          <button
-            type="button"
-            onClick={next}
-            className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:text-white hover:border-white/40 transition-colors"
-            aria-label="Следующий стиль"
-          >
-            ›
-          </button>
+              className="shrink-0 min-w-[44px] min-h-[44px] w-10 h-10 sm:w-8 sm:h-8 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:text-white hover:border-white/40 transition-colors touch-manipulation"
+              aria-label="Предыдущий стиль"
+            >
+              ‹
+            </button>
+            <div className="flex-1 min-w-0 overflow-x-auto flex items-center justify-center gap-1 sm:gap-2 py-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+              {stickers.map((_, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  onClick={() => goTo(i)}
+                  className="shrink-0 min-w-8 min-h-8 sm:min-w-[44px] sm:min-h-[44px] flex items-center justify-center rounded-full transition-all duration-300 touch-manipulation"
+                  aria-label={stickers[i].label}
+                >
+                  <span
+                    className={`block rounded-full transition-all duration-300 ${
+                      i === current ? "bg-primary w-4 h-1.5" : "w-1.5 h-1.5 bg-white/20 hover:bg-white/40"
+                    }`}
+                  />
+                </button>
+              ))}
+            </div>
+            <button
+              type="button"
+              onClick={next}
+              className="shrink-0 min-w-[44px] min-h-[44px] w-10 h-10 sm:w-8 sm:h-8 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:text-white hover:border-white/40 transition-colors touch-manipulation"
+              aria-label="Следующий стиль"
+            >
+              ›
+            </button>
           </div>
         )}
       </div>

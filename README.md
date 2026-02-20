@@ -32,10 +32,19 @@ npm run next:start
 
 См. [.env.local.example](.env.local.example). Обязательно:
 
-- `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY` (или аналог) — для API и hero-пресетов.
+- `SUPABASE_SUPABASE_PUBLIC_URL` (или `SUPABASE_URL`) — URL Supabase.
+- `SUPABASE_SERVICE_ROLE_KEY` (или `SUPABASE_ANON_KEY`) — ключ для API и Storage.
 - `SUPABASE_STORAGE_BUCKET_EXAMPLES` — бакет с паками (например `stickers-examples`), пути вида `pack/style/{preset_id}/1.webp`, `pack/content/{content_set_id}/1.webp`.
 
 Остальное — по необходимости (публичный URL лендинга для canonical и т.д.).
+
+### Локально пустые Hero и блок с примерами
+
+Если при `npm run next:dev` в Hero нет пилюль и картинок, а в блоке стилей — пусто, значит API не видит Supabase/Storage:
+
+1. Убедись, что запускаешь **Next.js**: `npm run next:dev` (не `npm run dev` — это другой сервер).
+2. Скопируй `.env.local.example` в `.env.local` и подставь реальные значения из того же Supabase-проекта, что и бот (URL, service role key, имя бакета).
+3. Проверка: открой в браузере `http://localhost:3000/api/packs/content-sets`. Если в ответе `[]` — нет доступа к Supabase или в бакете нет папок `pack/content/*`. Картинки грузятся из Storage по сформированным URL.
 
 ## Структура
 

@@ -14,9 +14,9 @@ export function ClusterHero({
   const showFixedPack = Array.isArray(heroPackUrls) && heroPackUrls.length > 0;
 
   return (
-    <section className="px-4 md:px-8 pt-16 md:pt-24 pb-8 md:pb-14">
+    <section className="px-4 md:px-8 pt-8 md:pt-10 pb-6 md:pb-10">
       <div className="max-w-5xl mx-auto">
-        <div className="text-center mb-6 sm:mb-10">
+        <div className="text-center mb-4 sm:mb-6">
           <h1 className="text-xl sm:text-3xl md:text-5xl font-display font-bold text-white mb-2 sm:mb-4 leading-tight">
             {h1}
           </h1>

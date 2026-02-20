@@ -29,12 +29,12 @@ const features = [
 
 export function Features() {
   return (
-    <section className="py-8 md:py-14 px-4 md:px-8">
+    <section className="py-6 md:py-10 px-4 md:px-8">
       <div className="max-w-4xl mx-auto">
         <h2 className="text-lg sm:text-2xl md:text-3xl font-display font-bold text-white text-center mb-2 sm:mb-3">
           Настрой пак под себя
         </h2>
-        <p className="text-xs sm:text-sm text-muted-foreground text-center mb-6 sm:mb-10">
+        <p className="text-xs sm:text-sm text-muted-foreground text-center mb-4 sm:mb-6">
           Текст и обводка в паке — бесплатно. Любой стикер в паке можно отредактировать и поменять эмоцию или движение — кнопка «Редактирование», 1 кредит.
         </p>
 

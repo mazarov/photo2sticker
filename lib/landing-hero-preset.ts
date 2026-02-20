@@ -18,14 +18,24 @@ export function packStylePreviewUrl(presetId: string): string | null {
 export type HeroPresetResult = {
   presetId: string;
   image_urls: string[];
+  /** true, если пресет подставлен по fallback (path не найден в landing_hero_paths). */
+  isFallback?: boolean;
 };
 
 const DEFAULT_HERO_PRESET_ID = "photo_realistic";
 
 /**
+ * URL пака стиля (pack/style/{presetId}/1..9) для блока «Примеры» на страницах подстиля.
+ * Всегда 9 URL; если файлов нет в storage — в ячейках показывается заглушка (StickerImageWithFallback).
+ */
+export function getPackImageUrlsForPresetId(presetId: string): string[] {
+  return packStyleUrls(presetId);
+}
+
+/**
  * Возвращает пресет и URL пака (pack/style/{id}/1..9) для пути страницы.
  * Резолв по landing_hero_paths: path должен входить в массив. При нескольких — первый по sort_order.
- * Если в БД нет подходящего пресета, но заданы SUPABASE_URL и бакет — возвращаем дефолтный пак (photo_realistic), чтобы Hero всегда показывал карусель на проде.
+ * Если в БД нет подходящего пресета, но заданы SUPABASE_URL и бакет — возвращаем дефолтный пак (photo_realistic).
  */
 export async function getHeroPresetForPath(path: string): Promise<HeroPresetResult | null> {
   const supabase = getSupabase();
@@ -49,7 +59,7 @@ export async function getHeroPresetForPath(path: string): Promise<HeroPresetResu
 
   const fallbackUrls = packStyleUrls(DEFAULT_HERO_PRESET_ID);
   if (fallbackUrls.length > 0) {
-    return { presetId: DEFAULT_HERO_PRESET_ID, image_urls: fallbackUrls };
+    return { presetId: DEFAULT_HERO_PRESET_ID, image_urls: fallbackUrls, isFallback: true };
   }
   return null;
 }

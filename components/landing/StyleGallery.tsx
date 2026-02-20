@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { StickerImageWithFallback, StickerFallbackPlaceholder } from "@/components/landing/StickerImageWithFallback";
 
 type StyleItem = { name: string; emoji: string; image: string; href?: string };
 
@@ -27,7 +28,7 @@ export function StyleGallery({
   const styles = items && items.length > 0 ? items : defaultStyles;
 
   return (
-    <section className="py-8 md:py-14 px-4 md:px-8">
+    <section className="py-6 md:py-10 px-4 md:px-8">
       <div className="max-w-4xl mx-auto">
         <h2 className="text-lg sm:text-2xl md:text-3xl font-display font-bold text-white text-center mb-2 sm:mb-3">
           {sectionTitle}
@@ -35,7 +36,7 @@ export function StyleGallery({
         <p className="text-xs sm:text-sm text-muted-foreground text-center mb-1 sm:mb-2">
           {sectionSubtitle}
         </p>
-        <p className="text-[10px] sm:text-xs text-muted-foreground/70 text-center mb-6 sm:mb-10">
+        <p className="text-[10px] sm:text-xs text-muted-foreground/70 text-center mb-4 sm:mb-6">
           Из одного фото — пак в любом стиле. От 45₽ за пак из 9 стикеров
         </p>
 
@@ -45,14 +46,13 @@ export function StyleGallery({
               <>
                 <div className="aspect-square w-full rounded-lg flex items-center justify-center overflow-visible">
                   {style.image ? (
-                    <img
+                    <StickerImageWithFallback
                       src={style.image}
                       alt={`${style.name} стикер из фото`}
-                      loading="lazy"
                       className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300"
                     />
                   ) : (
-                    <span className="text-muted-foreground text-xs">Нет примера</span>
+                    <StickerFallbackPlaceholder className="w-full h-full min-h-0" />
                   )}
                 </div>
                 <div className="mt-2.5 px-2 py-0.5 sm:px-3 sm:py-1 rounded-full border border-white/40 text-[9px] sm:text-[11px] md:text-xs font-bold text-white whitespace-nowrap">
@@ -80,7 +80,7 @@ export function StyleGallery({
           })}
         </div>
 
-        <p className="text-center text-[10px] sm:text-xs text-muted-foreground mt-4 sm:mt-6">
+        <p className="text-center text-[10px] sm:text-xs text-muted-foreground mt-3 sm:mt-4">
           {footerText}
         </p>
       </div>
