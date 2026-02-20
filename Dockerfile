@@ -1,34 +1,29 @@
-# Stage 1: Build
+# Next.js лендинг (standalone). Раньше здесь был Vite + nginx — сейчас прод на Next.js (SEO, API, кластерные страницы).
 FROM node:20-alpine AS builder
 
 WORKDIR /app
 
-# Copy package files
 COPY package*.json ./
-
-# Install dependencies
 RUN npm ci --ignore-scripts
 
-# Copy source code
 COPY . .
+RUN npm run next:build
 
-# Build the application
-RUN npx vite build
+# Standalone не включает public и .next/static — копируем вручную
+RUN cp -r public .next/standalone/ && cp -r .next/static .next/standalone/.next/
 
-# Stage 2: Production
-FROM nginx:alpine AS production
+# Production
+FROM node:20-alpine AS production
 
-# Replace entire nginx config (not just conf.d)
-COPY nginx.conf /etc/nginx/nginx.conf
+WORKDIR /app
 
-# Remove default conf.d to avoid conflicts
-RUN rm -rf /etc/nginx/conf.d/*
+ENV NODE_ENV=production
+ENV PORT=3000
+ENV HOSTNAME=0.0.0.0
 
-# Copy built assets from builder stage
-COPY --from=builder /app/dist/public /usr/share/nginx/html
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
 
-# Expose port 80 only (HTTPS handled by reverse proxy)
-EXPOSE 80
+EXPOSE 3000
 
-# Start nginx
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["node", "server.js"]

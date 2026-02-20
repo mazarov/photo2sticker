@@ -20,24 +20,36 @@ export type HeroPresetResult = {
   image_urls: string[];
 };
 
+const DEFAULT_HERO_PRESET_ID = "photo_realistic";
+
 /**
  * Возвращает пресет и URL пака (pack/style/{id}/1..9) для пути страницы.
  * Резолв по landing_hero_paths: path должен входить в массив. При нескольких — первый по sort_order.
+ * Если в БД нет подходящего пресета, но заданы SUPABASE_URL и бакет — возвращаем дефолтный пак (photo_realistic), чтобы Hero всегда показывал карусель на проде.
  */
 export async function getHeroPresetForPath(path: string): Promise<HeroPresetResult | null> {
   const supabase = getSupabase();
-  if (!supabase) return null;
   const normalizedPath = path || "/";
-  const { data, error } = await supabase
-    .from("style_presets_v2")
-    .select("id")
-    .eq("is_active", true)
-    .contains("landing_hero_paths", [normalizedPath])
-    .order("sort_order", { ascending: true })
-    .limit(1)
-    .maybeSingle();
 
-  if (error || !data?.id) return null;
-  const image_urls = packStyleUrls(data.id as string);
-  return { presetId: data.id as string, image_urls };
+  if (supabase) {
+    const { data, error } = await supabase
+      .from("style_presets_v2")
+      .select("id")
+      .eq("is_active", true)
+      .contains("landing_hero_paths", [normalizedPath])
+      .order("sort_order", { ascending: true })
+      .limit(1)
+      .maybeSingle();
+
+    if (!error && data?.id) {
+      const image_urls = packStyleUrls(data.id as string);
+      if (image_urls.length > 0) return { presetId: data.id as string, image_urls };
+    }
+  }
+
+  const fallbackUrls = packStyleUrls(DEFAULT_HERO_PRESET_ID);
+  if (fallbackUrls.length > 0) {
+    return { presetId: DEFAULT_HERO_PRESET_ID, image_urls: fallbackUrls };
+  }
+  return null;
 }

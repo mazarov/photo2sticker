@@ -24,7 +24,7 @@ export function StyleGallery({
   footerText?: string;
   items?: StyleItem[];
 } = {}) {
-  const styles = items ?? defaultStyles;
+  const styles = items && items.length > 0 ? items : defaultStyles;
 
   return (
     <section className="py-8 md:py-14 px-4 md:px-8">

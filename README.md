@@ -26,6 +26,8 @@ npm run next:build
 npm run next:start
 ```
 
+**Docker (прод):** в контейнере собирается и запускается Next.js (standalone), не Vite. Контекст сборки — `landing/`, Dockerfile — `landing/Dockerfile`. После сборки в контейнере задать те же ENV, что в [.env.local.example](.env.local.example), иначе API/картинки/SEO будут пустыми.
+
 ## ENV
 
 См. [.env.local.example](.env.local.example). Обязательно:

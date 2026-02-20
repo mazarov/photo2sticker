@@ -79,7 +79,23 @@ export function EmotionPackCarousel() {
   const prev = () => goTo((current - 1 + stickers.length) % stickers.length);
   const next = () => goTo((current + 1) % stickers.length);
 
-  if (packs.length === 0) return null;
+  if (packs.length === 0) {
+    return (
+      <div className="max-w-2xl mx-auto">
+        <div className="flex items-center justify-center gap-3 sm:gap-6 md:gap-10 px-4">
+          <div className="flex flex-col items-center gap-2 flex-1 max-w-[45%]">
+            <div className="rounded-2xl overflow-hidden border-2 border-white/10 shadow-lg bg-white/5 aspect-square flex items-center justify-center">
+              <HeroPhotoPlaceholder />
+            </div>
+          </div>
+          <div className="text-2xl sm:text-3xl text-primary shrink-0">→</div>
+          <div className="flex flex-col items-center justify-center gap-2 flex-1 max-w-[45%] aspect-square">
+            <span className="text-muted-foreground text-sm text-center">Примеры стикеров</span>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>

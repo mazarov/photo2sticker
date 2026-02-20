@@ -35,8 +35,8 @@ const DEFAULT_H1 = "Поможем сделать стикеры из фото �
 const DEFAULT_SUB =
   "ИИ превращает фото в стикеры за 30 секунд. Сохраняем цвет глаз, родинки, причёску — в паке узнаваемо ты. От 45₽ за пак из 9 стикеров.";
 
-function getHeadlines(): { h1: string; sub: string } {
-  if (typeof window === "undefined") return { h1: DEFAULT_H1, sub: DEFAULT_SUB };
+function getHeadlines(defaultH1: string, defaultSub: string): { h1: string; sub: string } {
+  if (typeof window === "undefined") return { h1: defaultH1, sub: defaultSub };
   const params = new URLSearchParams(window.location.search);
   const campaign = (params.get("utm_campaign") || "").toLowerCase();
 
@@ -48,16 +48,21 @@ function getHeadlines(): { h1: string; sub: string } {
     }
   }
 
-  return { h1: DEFAULT_H1, sub: DEFAULT_SUB };
+  return { h1: defaultH1, sub: defaultSub };
 }
 
 type HeroProps = {
+  /** H1 и подзаголовок из SEO-конфига (cluster). При наличии utm_campaign — UTM-варианты имеют приоритет. */
+  h1?: string;
+  subtitle?: string;
   /** Пак стиля для Hero (pack/style/{preset_id}/1..9). Если задан — показываем его вместо контент-паков. */
   heroPackUrls?: string[] | null;
 };
 
-export function Hero({ heroPackUrls }: HeroProps = {}) {
-  const { h1, sub } = useMemo(() => getHeadlines(), []);
+export function Hero({ h1: h1FromProps, subtitle: subFromProps, heroPackUrls }: HeroProps = {}) {
+  const defaultH1 = h1FromProps ?? DEFAULT_H1;
+  const defaultSub = subFromProps ?? DEFAULT_SUB;
+  const { h1, sub } = useMemo(() => getHeadlines(defaultH1, defaultSub), [defaultH1, defaultSub]);
   const showFixedPack = Array.isArray(heroPackUrls) && heroPackUrls.length > 0;
 
   return (

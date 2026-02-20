@@ -1,13 +1,8 @@
 import type { Metadata } from "next";
 import { getClusterBySlug, getAllClusterSlugs, MAIN_PAGE_CLUSTER_SLUG } from "@/lib/seo/cluster-pages";
+import { withSocialMeta } from "@/lib/seo/metadata";
 import { RelatedLinks } from "@/components/landing/RelatedLinks";
 import { getHeroPresetForPath } from "@/lib/landing-hero-preset";
-
-const BASE = "https://photo2sticker.ru";
-
-export const metadata: Metadata = {
-  alternates: { canonical: `${BASE}/` },
-};
 import { Hero } from "@/components/landing/Hero";
 import { PainBlock } from "@/components/landing/PainBlock";
 import { HopeBlock } from "@/components/landing/HopeBlock";
@@ -30,6 +25,12 @@ const mainClusterLinks = getAllClusterSlugs()
     return { href: `/${slug}`, label: c.h1 };
   });
 
+export const metadata: Metadata = withSocialMeta({
+  title: mainCluster.title,
+  description: mainCluster.metaDescription,
+  url: "https://photo2sticker.ru/",
+});
+
 export default async function Home() {
   const heroPreset = await getHeroPresetForPath("/");
 
@@ -48,7 +49,11 @@ export default async function Home() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/20 blur-[100px] rounded-full pointer-events-none" />
 
       <main className="relative z-10 pb-28">
-        <Hero heroPackUrls={heroPreset?.image_urls} />
+        <Hero
+          h1={mainCluster.h1}
+          subtitle={mainCluster.heroSubtitle}
+          heroPackUrls={heroPreset?.image_urls}
+        />
         <PainBlock title={mainCluster.painTitle} text={mainCluster.painText} />
         <HopeBlock
           title={mainCluster.hopeTitle}
@@ -56,8 +61,11 @@ export default async function Home() {
           points={mainCluster.hopePoints}
         />
         <SocialProof />
-        <Reviews />
-        <HowItWorks />
+        <Reviews reviews={mainCluster.reviews} />
+        <HowItWorks
+          sectionTitle={mainCluster.howItWorksTitle}
+          steps={mainCluster.howItWorksSteps}
+        />
         <StyleGalleryFromApi />
         <Features />
         <PriceBlock />
