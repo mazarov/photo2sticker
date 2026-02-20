@@ -16,7 +16,10 @@ type StyleHeroProps = {
 };
 
 export function StyleHero({ h1, subtitle, stickerItems, heroPackUrls, ctaSlug, ctaText }: StyleHeroProps) {
-  const showFixedPack = Array.isArray(heroPackUrls) && heroPackUrls.length > 0;
+  const packUrls = Array.isArray(heroPackUrls) && heroPackUrls.length > 0
+    ? heroPackUrls
+    : stickerItems.map((item) => item.src).filter(Boolean);
+  const showFixedPack = packUrls.length > 0;
 
   return (
     <section className="px-4 md:px-8 pt-16 md:pt-24 pb-8 md:pb-14">
@@ -35,7 +38,7 @@ export function StyleHero({ h1, subtitle, stickerItems, heroPackUrls, ctaSlug, c
           )}
         </div>
 
-        {showFixedPack ? <FixedPackCarousel imageUrls={heroPackUrls} /> : <EmotionPackCarousel />}
+        {showFixedPack ? <FixedPackCarousel imageUrls={packUrls} /> : <EmotionPackCarousel />}
       </div>
     </section>
   );
