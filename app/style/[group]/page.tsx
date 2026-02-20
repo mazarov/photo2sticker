@@ -16,7 +16,7 @@ import { FaqSchema } from "@/components/landing/FaqSchema";
 import { BreadcrumbSchema } from "@/components/landing/BreadcrumbSchema";
 import { RelatedLinks } from "@/components/landing/RelatedLinks";
 import { Reviews } from "@/components/landing/Reviews";
-import { TelegramButton } from "@/components/landing/TelegramButton";
+import { FixedCTA } from "@/components/landing/FixedCTA";
 
 import { withSocialMeta } from "@/lib/seo/metadata";
 import { getHeroPresetForPath, packStylePreviewUrl } from "@/lib/landing-hero-preset";
@@ -126,19 +126,7 @@ function StyleGroupPageContent({
         <RelatedLinks links={relatedLinks} />
       </main>
 
-      <div className="fixed bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-50 w-[90%] sm:w-auto max-w-md">
-        <div className="flex flex-col items-center gap-1 sm:gap-2">
-          <TelegramButton
-            pageSlug={group.ctaSlug}
-            size="lg"
-            className="shadow-2xl w-full sm:w-auto"
-            text={group.ctaButtonText}
-          />
-          <span className="text-[10px] sm:text-xs text-muted-foreground text-center">
-            Без дизайнера · Пак за 30 секунд
-          </span>
-        </div>
-      </div>
+      <FixedCTA pageSlug={group.ctaSlug} text={group.ctaButtonText} />
     </div>
   );
 }

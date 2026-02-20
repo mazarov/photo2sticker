@@ -16,7 +16,7 @@ import { HopeBlock } from "@/components/landing/HopeBlock";
 import { FAQ } from "@/components/landing/FAQ";
 import { RelatedLinks } from "@/components/landing/RelatedLinks";
 import { Reviews } from "@/components/landing/Reviews";
-import { TelegramButton } from "@/components/landing/TelegramButton";
+import { FixedCTA } from "@/components/landing/FixedCTA";
 import { FaqSchema } from "@/components/landing/FaqSchema";
 import { BreadcrumbSchema } from "@/components/landing/BreadcrumbSchema";
 import { withSocialMeta } from "@/lib/seo/metadata";
@@ -158,14 +158,10 @@ function SubstylePageContent({
         <RelatedLinks links={relatedLinks} />
       </main>
 
-      <div className="fixed bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-50 w-[90%] sm:w-auto max-w-md">
-        <TelegramButton
-          pageSlug={ctaSlug}
-          size="lg"
-          className="shadow-2xl w-full sm:w-auto"
-          text={`Создать ${substyle.nameRu.toLowerCase()} стикер`}
-        />
-      </div>
+      <FixedCTA
+        pageSlug={ctaSlug}
+        text={`Создать ${substyle.nameRu.toLowerCase()} стикер`}
+      />
     </div>
   );
 }
