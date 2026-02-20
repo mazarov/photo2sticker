@@ -8,7 +8,6 @@ import {
 } from "@/lib/seo/style-groups";
 import { StyleHero } from "@/components/landing/StyleHero";
 import { StyleGallery } from "@/components/landing/StyleGallery";
-import { StyleExamplesFromApi } from "@/components/landing/StyleExamplesFromApi";
 import { HowItWorks } from "@/components/landing/HowItWorks";
 import { PainBlock } from "@/components/landing/PainBlock";
 import { HopeBlock } from "@/components/landing/HopeBlock";
@@ -113,12 +112,6 @@ function StyleGroupPageContent({
           sectionSubtitle={`Выбери подстиль — каждый ведёт на отдельную страницу с примерами. В этой группе: ${group.substyles.map((s) => s.nameRu).join(", ")}.`}
           footerText="Первый пак стикеров бесплатно."
           items={galleryItems}
-        />
-
-        <StyleExamplesFromApi
-          groupSlug={groupSlug}
-          sectionTitle="Примеры стикеров"
-          sectionSubtitle="Реальные стикеры из бота в этой группе стилей."
         />
 
         <HowItWorks

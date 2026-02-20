@@ -10,7 +10,6 @@ import {
 import { StyleHero } from "@/components/landing/StyleHero";
 import { StyleGallery } from "@/components/landing/StyleGallery";
 import { PackExampleGrid } from "@/components/landing/PackExampleGrid";
-import { StyleExamplesFromApi } from "@/components/landing/StyleExamplesFromApi";
 import { HowItWorks } from "@/components/landing/HowItWorks";
 import { PainBlock } from "@/components/landing/PainBlock";
 import { HopeBlock } from "@/components/landing/HopeBlock";
@@ -138,13 +137,6 @@ function SubstylePageContent({
             items={[{ name: substyle.nameRu, emoji: substyle.emoji, image: substyle.image }]}
           />
         )}
-
-        <StyleExamplesFromApi
-          groupSlug={groupSlug}
-          presetIdFilter={substyle.presetId}
-          sectionTitle={`Примеры в стиле «${substyle.nameRu}»`}
-          sectionSubtitle="Реальные стикеры из бота в этом подстиле."
-        />
 
         <HowItWorks
           sectionTitle="3 шага — стикеры у тебя"
