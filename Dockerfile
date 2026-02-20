@@ -11,6 +11,11 @@ ENV SUPABASE_ANON_KEY=$SUPABASE_ANON_KEY
 ENV SUPABASE_SUPABASE_PUBLIC_URL=$SUPABASE_SUPABASE_PUBLIC_URL
 ENV SUPABASE_STORAGE_BUCKET_EXAMPLES=$SUPABASE_STORAGE_BUCKET_EXAMPLES
 
+# Проверка: в логах сборки будет видно, переданы ли build args (без вывода значений)
+RUN echo "[landing build] SUPABASE_ANON_KEY: $(if [ -n "$SUPABASE_ANON_KEY" ]; then echo 'set'; else echo 'NOT SET'; fi)" \
+  && echo "[landing build] SUPABASE_SUPABASE_PUBLIC_URL: $(if [ -n "$SUPABASE_SUPABASE_PUBLIC_URL" ]; then echo 'set'; else echo 'NOT SET'; fi)" \
+  && echo "[landing build] SUPABASE_STORAGE_BUCKET_EXAMPLES: $(if [ -n "$SUPABASE_STORAGE_BUCKET_EXAMPLES" ]; then echo 'set'; else echo 'NOT SET'; fi)"
+
 COPY package*.json ./
 RUN npm ci --ignore-scripts
 
