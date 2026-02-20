@@ -31,30 +31,7 @@ const DEFAULT_H1 = "Превращаем фото в пак стикеров д�
 const DEFAULT_SUB =
   "Сохраняем цвет глаз, родинки, причёску — в паке узнаваемо ты. Выбери стиль и эмоции: пак за 30 секунд, отправляй друзьям прикольные стикеры. От 45₽ за пак из 9 стикеров.";
 
-const PHOTO = "/images/examples/photo-1.webp";
-
-// Путь к картинкам: /images/carousel/{номер_пресета}/{номер_стикера}.png
-// Пресет = sort_order пака (1–8). Если у пресета нет папки — fallback на пресет 1.
-const PRESETS_WITH_IMAGES = [1, 2, 3, 4, 5, 6, 7, 8]; // пресеты с примерами (1–8: все паки эмоций)
-
-function getCarouselImagesForPack(sortOrder: number): string[] {
-  const preset = PRESETS_WITH_IMAGES.includes(sortOrder) ? sortOrder : 1;
-  return Array.from({ length: 9 }, (_, i) => `/images/carousel/${preset}/${i + 1}.png`);
-}
-
-// Паки эмоций из БД (pack_content_sets), сортировка по sort_order ascending.
-const PACKS: { id: string; name_ru: string; labels: string[]; sort_order: number }[] = [
-  { id: "humor", name_ru: "С юмором", sort_order: 1, labels: ["Опять ты", "Ну привет", "Ну ты даёшь", "Выручай", "Кранты", "Серьёзно?", "Ну давай", "Ок ок", "Ладно"] },
-  { id: "everyday", name_ru: "Быт и уют", sort_order: 2, labels: ["Спим?", "Где еда?", "Вырубайся", "Устал", "Диван", "Мимими", "Обнимашки", "Кофе?", "Тихий час"] },
-  { id: "reactions", name_ru: "На каждый день", sort_order: 3, labels: ["Доброе утро", "Скучаю", "Устал", "Голоден", "На работе", "Спокойной ночи", "Поехали", "Ок", "Привет"] },
-  { id: "support", name_ru: "Поддержка", sort_order: 4, labels: ["Мой герой", "Вместе справимся", "Горжусь", "Ты сможешь", "Рядом", "Верим в тебя", "Держись", "Красавчик", "Сила"] },
-  { id: "holiday", name_ru: "Праздник", sort_order: 5, labels: ["С днём рождения", "С 14 февраля", "С годовщиной", "Поздравляю", "За нас", "Любимой", "Любимому", "Праздник", "Ура"] },
-  { id: "sass", name_ru: "Сарказм", sort_order: 6, labels: ["Ага конечно", "Ну да", "Всё ясно", "Очень верю", "Да-да", "Конечно", "Как же", "Непременно", "Ага"] },
-  { id: "sweet", name_ru: "Ласка и комплименты", sort_order: 7, labels: ["Красотка", "Милый", "Таю", "Обожаю", "Котик", "Солнышко", "Сладкий", "Любимый", "Прелесть"] },
-  { id: "romance", name_ru: "Романтика", sort_order: 8, labels: ["Моя", "Люблю", "Спим?", "Чмок", "Вместе", "Красотка", "Мой герой", "Подарок", "Навсегда"] },
-].sort((a, b) => a.sort_order - b.sort_order);
-
-const DEFAULT_PACK_ID = "humor"; // С юмором
+type PackItem = { id: string; name_ru: string; labels: string[]; sort_order: number; image_urls?: string[] };
 
 function getHeadlines(): { h1: string; sub: string } {
   const params = new URLSearchParams(window.location.search);
@@ -73,13 +50,26 @@ function getHeadlines(): { h1: string; sub: string } {
 
 export function Hero() {
   const { h1, sub } = useMemo(() => getHeadlines(), []);
-  const [currentPackId, setCurrentPackId] = useState(DEFAULT_PACK_ID);
+  const [packs, setPacks] = useState<PackItem[]>([]);
+  const [currentPackId, setCurrentPackId] = useState<string | null>(null);
   const [current, setCurrent] = useState(0);
   const [fade, setFade] = useState(true);
 
-  const currentPack = PACKS.find((p) => p.id === currentPackId) ?? PACKS.find((p) => p.id === DEFAULT_PACK_ID) ?? PACKS[0];
-  const carouselImages = getCarouselImagesForPack(currentPack.sort_order);
-  const stickers = carouselImages.map((src, i) => ({ src, label: currentPack.labels[i] ?? "" }));
+  useEffect(() => {
+    fetch("/api/packs/content-sets")
+      .then((res) => (res.ok ? res.json() : []))
+      .then((data: PackItem[]) => {
+        if (Array.isArray(data) && data.length > 0) {
+          setPacks(data);
+          setCurrentPackId((prev) => (prev && data.some((p) => p.id === prev)) ? prev : data[0].id);
+        }
+      })
+      .catch(() => {});
+  }, []);
+
+  const currentPack = packs.find((p) => p.id === currentPackId) ?? packs[0];
+  const carouselImages = currentPack?.image_urls ?? [];
+  const stickers = carouselImages.map((src, i) => ({ src, label: currentPack?.labels[i] ?? "" }));
 
   const goTo = useCallback(
     (next: number) => {
@@ -97,8 +87,9 @@ export function Hero() {
     setCurrent(0);
   }, []);
 
-  // Auto-rotate stickers
+  // Auto-rotate stickers (только если есть несколько)
   useEffect(() => {
+    if (stickers.length <= 1) return;
     const interval = setInterval(() => {
       goTo((current + 1) % stickers.length);
     }, 3000);
@@ -107,6 +98,23 @@ export function Hero() {
 
   const prev = () => goTo((current - 1 + stickers.length) % stickers.length);
   const next = () => goTo((current + 1) % stickers.length);
+
+  if (packs.length === 0) {
+    return (
+      <section className="px-4 md:px-8 pt-16 md:pt-24 pb-8 md:pb-14">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-6 sm:mb-10">
+            <h1 className="text-xl sm:text-3xl md:text-5xl font-display font-bold text-white mb-2 sm:mb-4 leading-tight">
+              {h1}
+            </h1>
+            <h2 className="text-xs sm:text-base md:text-lg text-muted-foreground px-2 max-w-2xl mx-auto">
+              {sub}
+            </h2>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="px-4 md:px-8 pt-16 md:pt-24 pb-8 md:pb-14">
@@ -123,7 +131,7 @@ export function Hero() {
 
         {/* Переключатель паков эмоций */}
         <div className="flex flex-wrap justify-center gap-2 mb-4 sm:mb-6">
-          {PACKS.map((pack) => (
+          {packs.map((pack) => (
             <button
               key={pack.id}
               onClick={() => selectPack(pack.id)}
@@ -141,34 +149,34 @@ export function Hero() {
         {/* Before/After — photo fixed, sticker rotates */}
         <div className="max-w-2xl mx-auto">
           <div className="flex items-center justify-center gap-3 sm:gap-6 md:gap-10 px-4">
-            {/* Photo (fixed) */}
+            {/* Photo (placeholder — без тестовой картинки) */}
             <div className="flex flex-col items-center gap-2 flex-1 max-w-[45%]">
-              <div className="rounded-2xl overflow-hidden border-2 border-white/10 shadow-lg">
-                <img
-                  src={PHOTO}
-                  alt="Исходное фото"
-                  loading="eager"
-                  className="w-full h-auto object-cover aspect-square"
-                />
+              <div className="rounded-2xl overflow-hidden border-2 border-white/10 shadow-lg bg-white/5 aspect-square flex items-center justify-center">
+                <span className="text-muted-foreground text-sm">Фото</span>
               </div>
             </div>
 
             {/* Arrow */}
             <div className="text-2xl sm:text-3xl text-primary shrink-0">→</div>
 
-            {/* Sticker (rotating) */}
+            {/* Sticker (rotating) — только из API, без fallback на /images/carousel */}
             <div className="flex flex-col items-center gap-2 flex-1 max-w-[45%]">
-              <div className="relative aspect-square w-full flex items-center justify-center">
-                <img
-                  src={stickers[current].src}
-                  alt={`Стикер — ${stickers[current].label}`}
-                  className={`w-full h-full object-contain drop-shadow-[0_4px_20px_rgba(139,92,246,0.3)] transition-opacity duration-200 ${fade ? "opacity-100" : "opacity-0"}`}
-                />
+              <div className="relative aspect-square w-full flex items-center justify-center overflow-visible">
+                {stickers[current]?.src ? (
+                  <img
+                    src={stickers[current].src}
+                    alt={`Стикер — ${stickers[current].label}`}
+                    className={`w-full h-full object-contain drop-shadow-[0_4px_20px_rgba(139,92,246,0.3)] transition-opacity duration-200 ${fade ? "opacity-100" : "opacity-0"}`}
+                  />
+                ) : (
+                  <span className="text-muted-foreground text-sm">{stickers.length === 0 ? "Нет примеров" : "Стикер"}</span>
+                )}
               </div>
             </div>
           </div>
 
-          {/* Navigation */}
+          {/* Navigation — только если есть несколько стикеров */}
+          {stickers.length > 1 && (
           <div className="flex items-center justify-center gap-4 mt-4">
             <button
               onClick={prev}
@@ -202,6 +210,7 @@ export function Hero() {
               ›
             </button>
           </div>
+          )}
         </div>
 
       </div>

@@ -1,6 +1,9 @@
 node_modules
 dist
+.next
 .DS_Store
+.env.local
+.env*.local
 server/public
 vite.config.ts.*
 *.tar.gz

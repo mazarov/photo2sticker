@@ -26,9 +26,11 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(import.meta.dirname, "client", "src"),
+      "@seo": path.resolve(import.meta.dirname, "lib", "seo"),
       "@shared": path.resolve(import.meta.dirname, "shared"),
       "@assets": path.resolve(import.meta.dirname, "attached_assets"),
     },
+    dedupe: ["tailwindcss", "tw-animate-css"],
   },
   css: {
     postcss: {

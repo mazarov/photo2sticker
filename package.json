@@ -7,10 +7,13 @@
     "node": ">=18.0.0"
   },
   "scripts": {
-    "dev:client": "vite dev --port 5000",
+    "dev:client": "vite dev --port 3000",
     "dev": "NODE_ENV=development tsx server/index.ts",
     "build": "tsx script/build.ts",
     "start": "NODE_ENV=production node dist/index.cjs",
+    "next:dev": "next dev --port 3000",
+    "next:build": "next build",
+    "next:start": "next start --port 3000",
     "check": "tsc",
     "db:push": "drizzle-kit push"
   },
@@ -59,6 +62,8 @@
     "input-otp": "^1.4.2",
     "lucide-react": "^0.545.0",
     "memorystore": "^1.6.7",
+    "@supabase/supabase-js": "^2.47.0",
+    "next": "^15.0.3",
     "next-themes": "^0.4.6",
     "passport": "^0.7.0",
     "passport-local": "^1.0.0",
@@ -83,6 +88,7 @@
     "@replit/vite-plugin-cartographer": "^0.4.4",
     "@replit/vite-plugin-dev-banner": "^0.1.1",
     "@replit/vite-plugin-runtime-error-modal": "^0.0.4",
+    "@tailwindcss/postcss": "^4.1.14",
     "@tailwindcss/vite": "^4.1.14",
     "@types/connect-pg-simple": "^7.0.3",
     "@types/express": "4.17.21",
@@ -98,7 +104,7 @@
     "drizzle-kit": "^0.31.4",
     "esbuild": "^0.25.0",
     "postcss": "^8.5.6",
-    "tailwindcss": "^4.1.14",
+    "tailwindcss": "^4.1.18",
     "tsx": "^4.20.5",
     "typescript": "5.6.3",
     "vite": "^7.1.9"

@@ -1,8 +1,9 @@
+import { getClusterBySlug, MAIN_PAGE_CLUSTER_SLUG } from "@seo/cluster-pages";
 import { Hero } from "@/components/landing/Hero";
 import { PainBlock } from "@/components/landing/PainBlock";
 import { HopeBlock } from "@/components/landing/HopeBlock";
 import { SocialProof } from "@/components/landing/SocialProof";
-import { StyleGallery } from "@/components/landing/StyleGallery";
+import { StyleGalleryFromApi } from "@/components/landing/StyleGalleryFromApi";
 import { HowItWorks } from "@/components/landing/HowItWorks";
 import { Features } from "@/components/landing/Features";
 import { PriceBlock } from "@/components/landing/PriceBlock";
@@ -10,6 +11,8 @@ import { FAQ } from "@/components/landing/FAQ";
 import { Reviews } from "@/components/landing/Reviews";
 import { TelegramButton } from "@/components/landing/TelegramButton";
 import heroBg from "@assets/generated_images/dark_navy_seamless_pattern_with_doodle_icons.webp";
+
+const mainCluster = getClusterBySlug(MAIN_PAGE_CLUSTER_SLUG)!;
 
 export default function Home() {
   return (
@@ -29,12 +32,16 @@ export default function Home() {
       {/* Content */}
       <main className="relative z-10 pb-28">
         <Hero />
-        <PainBlock />
-        <HopeBlock />
+        <PainBlock title={mainCluster.painTitle} text={mainCluster.painText} />
+        <HopeBlock
+          title={mainCluster.hopeTitle}
+          text={mainCluster.hopeText}
+          points={mainCluster.hopePoints}
+        />
         <SocialProof />
         <Reviews />
         <HowItWorks />
-        <StyleGallery />
+        <StyleGalleryFromApi />
         <Features />
         <PriceBlock />
         <FAQ />
@@ -46,7 +53,7 @@ export default function Home() {
           <TelegramButton
             size="lg"
             className="shadow-2xl w-full sm:w-auto"
-            text="Сделать пак стикеров в Telegram"
+            text={mainCluster.ctaButtonText}
           />
           <span className="text-[10px] sm:text-xs text-muted-foreground text-center">
             Без дизайнера · Без регистрации · Пак за 30 секунд
