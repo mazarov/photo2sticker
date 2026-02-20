@@ -1,3 +1,8 @@
+import {
+  StickerImageWithFallback,
+  StickerFallbackPlaceholder,
+} from "@/components/landing/StickerImageWithFallback";
+
 /**
  * Блок «Примеры» на странице подстиля (третий уровень): 9 стикеров в данном стиле из примера пака (pack/style/{preset_id}/1..9).
  */
@@ -34,14 +39,13 @@ export function PackExampleGrid({
               className="aspect-square w-full rounded-lg flex items-center justify-center overflow-hidden bg-white/5"
             >
               {src ? (
-                <img
+                <StickerImageWithFallback
                   src={src}
                   alt={`Стикер ${index + 1}`}
-                  loading="lazy"
                   className="w-full h-full object-contain"
                 />
               ) : (
-                <span className="text-muted-foreground text-xs">—</span>
+                <StickerFallbackPlaceholder className="w-full h-full min-h-0" />
               )}
             </div>
           ))}

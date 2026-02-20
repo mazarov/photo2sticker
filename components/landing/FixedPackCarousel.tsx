@@ -1,6 +1,10 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import {
+  StickerImageWithFallback,
+  StickerFallbackPlaceholder,
+} from "@/components/landing/StickerImageWithFallback";
 
 const HERO_PHOTO_SRC = "/images/examples/photo-1.webp";
 
@@ -56,7 +60,7 @@ export function FixedPackCarousel({ imageUrls }: { imageUrls: string[] }) {
         <div className="flex flex-col items-center gap-2 flex-1 max-w-[45%]">
           <div className="relative aspect-square w-full flex items-center justify-center overflow-visible">
             {src ? (
-              <img
+              <StickerImageWithFallback
                 src={src}
                 alt="Стикер"
                 className={`w-full h-full object-contain drop-shadow-[0_4px_20px_rgba(139,92,246,0.3)] transition-opacity duration-200 ${
@@ -64,7 +68,7 @@ export function FixedPackCarousel({ imageUrls }: { imageUrls: string[] }) {
                 }`}
               />
             ) : (
-              <span className="text-muted-foreground text-sm">Стикер</span>
+              <StickerFallbackPlaceholder className="w-full h-full min-h-0" />
             )}
           </div>
         </div>
