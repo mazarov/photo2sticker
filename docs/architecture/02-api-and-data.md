@@ -36,6 +36,22 @@ Storage (бакет `stickers-examples` или из env):
 
 Миграция с путями и пресетами: в корне репо `sql/092_landing_hero_paths.sql`.
 
+## Сборка образа (build args)
+
+Страницы стилей и кластеров генерируются **статически (SSG)** при `next build`. В этот момент вызывается `getHeroPresetForPath()` — нужен доступ к Supabase (таблица `style_presets_v2`, URL бакета). Переменные окружения в **запущенном** контейнере при сборке недоступны, поэтому их передают как **Docker build args** при сборке образа.
+
+В **Dockerfile** (стадия builder) объявлены ARG и ENV:
+
+| ARG / ENV | Назначение |
+|-----------|------------|
+| `SUPABASE_ANON_KEY` | Ключ для доступа к API Supabase при сборке (чтение `style_presets_v2`). Anon key — публичный, допустим в build args. |
+| `SUPABASE_SUPABASE_PUBLIC_URL` | URL Supabase (self-hosted или облако). Используется в `lib/supabase.ts` и для формирования URL картинок Storage. |
+| `SUPABASE_STORAGE_BUCKET_EXAMPLES` | Имя бакета с примерами (например `stickers-examples`). Базовый путь: `pack/style/{preset_id}/1..9.webp`. |
+
+**Где задавать значения:** в панели Dockhost (или другом CI) — раздел **Аргументы сборки** / **Build args**. Имена переменных должны совпадать с перечисленными выше. Значения (URL, ключ, имя бакета) в репозиторий не коммитятся.
+
+Если при сборке эти аргументы не переданы, `getHeroPresetForPath` вернёт `null` → в Hero и в блоке «Пример» будут fallback (одна карточка или EmotionPackCarousel). Для проверки в Dockerfile добавлен шаг, который в логах сборки выводит `[landing build] SUPABASE_*: set` или `NOT SET` (без значений).
+
 ## Превью стилей (карточки)
 
 - Везде один источник: первый стикер пака стиля — `pack/style/{preset_id}/1.webp`.
