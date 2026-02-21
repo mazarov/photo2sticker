@@ -1,8 +1,10 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Send } from "lucide-react";
-import { useMemo } from "react";
+import { useState, useEffect } from "react";
 import { buildTelegramStartLink } from "@/lib/utils";
+
+const FALLBACK_TG_URL = "https://t.me/Photo_2_StickerBot";
 
 export function TelegramButton({
   className = "",
@@ -16,7 +18,12 @@ export function TelegramButton({
   /** For SEO pages: start param when no UTM (e.g. "bot" → ?start=web_bot). Omit for main page. */
   pageSlug?: string;
 }) {
-  const telegramUrl = useMemo(() => buildTelegramStartLink(pageSlug), [pageSlug]);
+  // Ссылка пересчитывается на клиенте после монтирования, чтобы в неё попали UTM/yclid из текущего URL
+  // (после редиректа с Директа на /?utm_source=yandex&... иначе в href попадал бы только web/web_foto с SSR)
+  const [telegramUrl, setTelegramUrl] = useState(FALLBACK_TG_URL);
+  useEffect(() => {
+    setTelegramUrl(buildTelegramStartLink(pageSlug));
+  }, [pageSlug]);
 
   return (
     <div className={className}>
