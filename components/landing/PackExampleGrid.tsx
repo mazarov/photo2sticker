@@ -4,7 +4,7 @@ import {
 } from "@/components/landing/StickerImageWithFallback";
 
 /**
- * Блок «Примеры» на странице подстиля (третий уровень): 9 стикеров в данном стиле из примера пака (pack/style/{preset_id}/1..9).
+ * Блок «Примеры» на странице подстиля (третий уровень): 16 стикеров в данном стиле из примера пака (pack/style/{preset_id}/1..16).
  */
 export function PackExampleGrid({
   sectionTitle,
@@ -17,7 +17,7 @@ export function PackExampleGrid({
   footerText: string;
   imageUrls: string[];
 }) {
-  const urls = imageUrls.slice(0, 9);
+  const urls = imageUrls.slice(0, 16);
 
   return (
     <section className="py-6 md:py-10 px-4 md:px-8">
@@ -29,10 +29,10 @@ export function PackExampleGrid({
           {sectionSubtitle}
         </p>
         <p className="text-[10px] sm:text-xs text-muted-foreground/70 text-center mb-4 sm:mb-6">
-          Из одного фото — пак в любом стиле. От 45₽ за пак из 9 стикеров
+          Из одного фото — пак в любом стиле. От 150⭐ за пак из 16 стикеров
         </p>
 
-        <div className="grid grid-cols-3 sm:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
+        <div className="grid grid-cols-4 gap-3 sm:gap-4 md:gap-6">
           {urls.map((src, index) => (
             <div
               key={index}

@@ -8,7 +8,7 @@ export type ContentSetItem = {
   name_ru: string;
   labels: string[];
   sort_order: number;
-  /** URL картинок карусели 1..9 (из Storage pack/content/{id}/). */
+  /** URL картинок карусели 1..16 (из Storage pack/content/{id}/). */
   image_urls?: string[];
 };
 
@@ -80,7 +80,7 @@ export async function GET() {
         name_ru: meta?.name_ru ?? id,
         labels: meta?.labels ?? [],
         sort_order: meta?.sort_order ?? index,
-        image_urls: Array.from({ length: 9 }, (_, i) => publicUrlForContentSetFile(id, i + 1)),
+        image_urls: Array.from({ length: 16 }, (_, i) => publicUrlForContentSetFile(id, i + 1)),
       };
     });
 

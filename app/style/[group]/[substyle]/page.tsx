@@ -126,10 +126,10 @@ function SubstylePageContent({
           points={group.hopePoints}
         />
 
-        {examplePackUrls.length >= 9 ? (
+        {examplePackUrls.length >= 16 ? (
           <PackExampleGrid
             sectionTitle={`Пример: ${substyle.nameRu}`}
-            sectionSubtitle="9 стикеров в этом стиле из примера пака. ИИ сохраняет черты лица."
+            sectionSubtitle="16 стикеров в этом стиле из примера пака. ИИ сохраняет черты лица."
             footerText="Первый пак бесплатно."
             imageUrls={examplePackUrls}
           />

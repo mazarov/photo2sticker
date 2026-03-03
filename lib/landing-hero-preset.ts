@@ -6,7 +6,7 @@ const examplesBucket = process.env.SUPABASE_STORAGE_BUCKET_EXAMPLES || "stickers
 function packStyleUrls(presetId: string): string[] {
   if (!supabaseUrl || !examplesBucket) return [];
   const base = `${supabaseUrl.replace(/\/$/, "")}/storage/v1/object/public/${examplesBucket}`;
-  return Array.from({ length: 9 }, (_, i) => `${base}/pack/style/${presetId}/${i + 1}.webp`);
+  return Array.from({ length: 16 }, (_, i) => `${base}/pack/style/${presetId}/${i + 1}.webp`);
 }
 
 /** Превью стиля = первый стикер пака: pack/style/{presetId}/1.webp */

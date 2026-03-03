@@ -71,7 +71,7 @@ export async function getPacksContentSets(_req: Request, res: Response): Promise
         name_ru: meta?.name_ru ?? id,
         labels: meta?.labels ?? [],
         sort_order: meta?.sort_order ?? index,
-        image_urls: Array.from({ length: 9 }, (_, i) => publicUrlForContentSetFile(id, i + 1)),
+        image_urls: Array.from({ length: 16 }, (_, i) => publicUrlForContentSetFile(id, i + 1)),
       };
     });
 
